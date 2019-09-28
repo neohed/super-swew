@@ -1,0 +1,28 @@
+{
+  "name": "super-swew",
+  "version": "1.0.0",
+  "description": "A fast string StartsWith and EndsWith comparer for when making a lot of comparisons!",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "perf": "node ./performance"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neohed/super-swew.git"
+  },
+  "keywords": [
+    "string",
+    "comparison",
+    "performance"
+  ],
+  "author": "neohed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neohed/super-swew/issues"
+  },
+  "homepage": "https://github.com/neohed/super-swew#readme",
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
