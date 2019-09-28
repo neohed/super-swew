@@ -4,12 +4,21 @@ A Fast string startsWith and endsWith comparison.
 
 ## Usage
 
+##### Signature
+```javascript
+function getMatcher(
+		exclusions = [],
+		isEndsWith = false
+) {}
+```
+
+##### Example
 ```javascript
 const exclusions = [
     'ab',
     'cd',
     'er',
-    'ox,
+    'ox'
 ];
 
 const prefixMatcher = getMatcher(exclusions);
