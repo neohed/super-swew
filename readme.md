@@ -14,6 +14,8 @@ function getMatcher(
 
 ##### Example
 ```javascript
+import {getMatcher} from 'super-swew';
+
 const exclusions = [
     'ab',
     'cd',
