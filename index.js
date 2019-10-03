@@ -2,29 +2,29 @@ function getMatcher(
 		exclusions = [],
 		isEndsWith = false
 ) {
-    const charTree = exclusions.filter(x => !!x).sort((a, b) => a.length - b.length).reduce((tree, sortedExclusions) => {
+    const exclusionsTree = exclusions.filter(x => !!x).sort((a, b) => a.length - b.length).reduce((treeBuilder, sortedExclusions) => {
         const exclusionChars = sortedExclusions.split('');
 
         if (isEndsWith) {
             exclusionChars.reverse();
         }
 
-        const end = exclusionChars.length - 1;
+        const exclusionCharsLength = exclusionChars.length - 1;
 
-        exclusionChars.reduce((acc, char, i) => {
-            if (!acc.isMatch && !acc.nextChars.has(char)) {
-                const isMatch = i === end;
+        exclusionChars.reduce((treeRef, exclusionChar, i) => {
+            if (!treeRef.isMatch && !treeRef.nextChars.has(exclusionChar)) {
+                const isMatch = i === exclusionCharsLength;
 
-                acc.nextChars.set(char, {
+                treeRef.nextChars.set(exclusionChar, {
                     isMatch,
                     nextChars: isMatch ? null : new Map()
                 })
             }
 
-            return acc.isMatch ? acc : acc.nextChars.get(char)
-        }, tree);
+            return treeRef.isMatch ? treeRef : treeRef.nextChars.get(exclusionChar)
+        }, treeBuilder);
 
-        return tree
+        return treeBuilder
     }, {
         isMatch: false,
         nextChars: new Map()
@@ -37,7 +37,7 @@ function getMatcher(
 
         let i = word.length;
         const n = isEndsWith ? 0 : i - 1;
-        let pointer = charTree;
+        let pointer = exclusionsTree;
         let wordLetter;
 
         while (
