@@ -12,7 +12,7 @@ function getMatcher(
 ) {}
 ```
 
-##### Example
+##### Example - performing single matches
 ```javascript
 import {getMatcher} from 'super-swew';
 
@@ -28,6 +28,30 @@ const isPrefixMatch = prefixMatcher('fox'); // -> false
 
 const suffixMatcher = getMatcher(exclusions, true);
 const isSuffixMatch = suffixMatcher('fox'); // -> true
+```
+
+##### Example - performing multiple matches
+```javascript
+import {getMatcher} from 'super-swew';
+
+const exclusions = [
+    'ab',
+    'co',
+    'ra',
+    'ox'
+];
+const bands = [
+    'abba',
+    'coldplay',
+    'radiohead',
+    'metallica',
+    'deftones'
+];
+
+const isPrefixMatch = getMatcher(exclusions);
+const matchingBands = bands.filter(band => isPrefixMatch(band));
+console.log(matchingBands);
+// -> [ 'abba', 'coldplay', ''radiohead ]
 ```
 
 ## Description
