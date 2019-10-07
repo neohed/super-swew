@@ -4,7 +4,7 @@ Fast string startsWith and endsWith comparisons.
 
 ## Usage
 
-##### Signature
+#### Signature
 ```javascript
 function getMatcher(
 		exclusions = [],
@@ -12,7 +12,7 @@ function getMatcher(
 ) {}
 ```
 
-##### Example - performing single matches
+#### Example - performing single matches
 ```javascript
 import {getMatcher} from 'super-swew';
 
@@ -30,7 +30,7 @@ const suffixMatcher = getMatcher(exclusions, true);
 const isSuffixMatch = suffixMatcher('fox'); // -> true
 ```
 
-##### Example - performing multiple matches
+#### Example - performing multiple matches
 ```javascript
 import {getMatcher} from 'super-swew';
 
@@ -51,14 +51,16 @@ const bands = [
 const isPrefixMatch = getMatcher(exclusions);
 const matchingBands = bands.filter(band => isPrefixMatch(band));
 console.log(matchingBands);
-// -> [ 'abba', 'coldplay', ''radiohead ]
+// -> [ 'abba', 'coldplay', 'radiohead' ]
 ```
 
 ## Description
 
 This uses a tree data structure to perform string startswith or endsWith comparisons efficiently.
 
-There is some overhead to creating the tree so it is not suitable when performing a small number of comparisons.  For matching a small number of strings stick with native methods.  But, if you're performing upward of 10,000 comparisons this beats the native methods.
+There is some overhead to creating the tree so it is not suitable when performing a small number of comparisons.  For matching a small number of strings stick with native methods.  But, if you're performing upward of around 150 comparisons this beats the native methods.
+
+For a performance comparison you can run the performance test script below.
 
 ## Scripts
 

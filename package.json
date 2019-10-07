@@ -1,7 +1,7 @@
 {
   "name": "super-swew",
   "version": "1.0.2",
-  "description": "A fast string StartsWith and EndsWith comparer for when making a lot of comparisons!",
+  "description": "A fast string StartsWith and EndsWith comparer for performing many comparisons!",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
@@ -14,7 +14,8 @@
   "keywords": [
     "string",
     "comparison",
-    "performance"
+    "performance",
+    "javascript"
   ],
   "author": "neohed",
   "license": "ISC",
