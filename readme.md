@@ -4,6 +4,12 @@ Fast string startsWith and endsWith comparisons.
 
 ## Usage
 
+#### Installation
+
+```
+npm install -S super-swew
+```
+
 #### Signature
 ```javascript
 function getMatcher(
