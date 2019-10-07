@@ -1,6 +1,6 @@
 {
   "name": "super-swew",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A fast string StartsWith and EndsWith comparer for performing many comparisons!",
   "main": "index.js",
   "scripts": {
