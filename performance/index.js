@@ -26,8 +26,8 @@ function runForN(method, n) {
     console.log(method.name + ' for ' + (dict.length * excl.length) + ' took: ' + res)
 }
 
-[1, 10, 20, 50, 100, 150, 200, 400, 500, 1000, 1500, 2000].forEach(n => {
-    console.log('\n' + n);
+[1, 10, 20, 50, 75, 100, 150, 200, 400, 500, 1000, 1500, 2000].forEach(n => {
+    console.log('\nTest: ' + n);
     runForN(testSwew, n);
     runForN(testNative, n);
 });
