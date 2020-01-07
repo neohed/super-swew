@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/neohed/super-swew#readme",
   "devDependencies": {
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.2"
   }
 }
