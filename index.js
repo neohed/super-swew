@@ -21,7 +21,9 @@ function getMatcher(
                 })
             }
 
-            return treeRef.isMatch ? treeRef : treeRef.nextChars.get(exclusionChar)
+            return treeRef.isMatch
+                ? treeRef
+                : treeRef.nextChars.get(exclusionChar)
         }, treeBuilder);
 
         return treeBuilder
