@@ -11,6 +11,8 @@ function testNative(dict, excl) {
     dict.forEach(word => excl.some(ex => word.startsWith(ex)))
 }
 
+//TODO Refactor to use console.time
+// https://developer.mozilla.org/en-US/docs/Web/API/Console/time
 function measure(dict, excl, method) {
     const start = new Date().getTime();
     method(dict, excl);
