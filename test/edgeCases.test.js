@@ -20,7 +20,10 @@ const dodgyWordList = [
     '',
     0,
     null,
-    undefined
+    undefined,
+    [],
+    {},
+    () => null
 ];
 const words = [
     'abandon',
