@@ -3,7 +3,7 @@ function generateMatchesTree(isEndsWith = false) {
         const matchingChars = sortedMatches.split('');
 
         if (isEndsWith) {
-            matchingChars.reverse();
+            matchingChars.reverse()
         }
 
         const matchCharsLength = matchingChars.length - 1;
@@ -43,11 +43,11 @@ function matchWord(matchesTree, isEndsWith = false) {
             && i--
             && pointer.nextChars
             && pointer.nextChars.has(wordLetter = word[Math.abs(n - i)])
-            ) {
-            pointer = pointer.nextChars.get(wordLetter);
+        ) {
+            pointer = pointer.nextChars.get(wordLetter)
         }
 
-        return pointer.isMatch;
+        return pointer.isMatch
     }
 }
 
