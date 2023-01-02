@@ -1,21 +1,21 @@
 function getMatcher(
-		exclusions = [],
+		validMatches = [],
 		isEndsWith = false
 ) {
-    const exclusionsTree = exclusions.filter(x => !!x).sort((a, b) => a.length - b.length).reduce((treeBuilder, sortedExclusions) => {
-        const exclusionChars = sortedExclusions.split('');
+    const matchesTree = validMatches.filter(x => !!x).sort((a, b) => a.length - b.length).reduce((treeBuilder, sortedMatches) => {
+        const matchingChars = sortedMatches.split('');
 
         if (isEndsWith) {
-            exclusionChars.reverse();
+            matchingChars.reverse();
         }
 
-        const exclusionCharsLength = exclusionChars.length - 1;
+        const exclusionCharsLength = matchingChars.length - 1;
 
-        exclusionChars.reduce((treeRef, exclusionChar, i) => {
-            if (!treeRef.isMatch && !treeRef.nextChars.has(exclusionChar)) {
+        matchingChars.reduce((treeRef, matchingChar, i) => {
+            if (!treeRef.isMatch && !treeRef.nextChars.has(matchingChar)) {
                 const isMatch = i === exclusionCharsLength;
 
-                treeRef.nextChars.set(exclusionChar, {
+                treeRef.nextChars.set(matchingChar, {
                     isMatch,
                     nextChars: isMatch ? null : new Map()
                 })
@@ -23,7 +23,7 @@ function getMatcher(
 
             return treeRef.isMatch
                 ? treeRef
-                : treeRef.nextChars.get(exclusionChar)
+                : treeRef.nextChars.get(matchingChar)
         }, treeBuilder);
 
         return treeBuilder
@@ -39,7 +39,7 @@ function getMatcher(
 
         let i = word.length;
         const n = isEndsWith ? 0 : i - 1;
-        let pointer = exclusionsTree;
+        let pointer = matchesTree;
         let wordLetter;
 
         while (

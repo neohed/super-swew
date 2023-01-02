@@ -1,13 +1,13 @@
 const assert = require('assert');
 const {getMatcher} = require('../index');
 
-const excludePrefixes = [
+const matchPrefixes = [
     'or',
     'mel',
     'av',
     'apr'
 ];
-const excludeSuffixes = [
+const matchSuffixes = [
     'le',
     'ar',
     'pe',
@@ -55,8 +55,8 @@ describe('getMatcher Matching Tests', function() {
     let suffixMatcher;
 
     before(function() {
-        prefixMatcher = getMatcher(excludePrefixes);
-        suffixMatcher = getMatcher(excludeSuffixes, true);
+        prefixMatcher = getMatcher(matchPrefixes);
+        suffixMatcher = getMatcher(matchSuffixes, true);
     });
 
     describe('Should match', function() {

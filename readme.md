@@ -13,7 +13,7 @@ npm install -S super-swew
 #### Signature
 ```javascript
 function getMatcher(
-		exclusions = [],
+        validMatches = [],
 		isEndsWith = false
 ) {}
 ```
@@ -22,17 +22,17 @@ function getMatcher(
 ```javascript
 import {getMatcher} from 'super-swew';
 
-const exclusions = [
+const matches = [
     'ab',
     'cd',
     'er',
     'ox'
 ];
 
-const startsWithMatcher = getMatcher(exclusions);
+const startsWithMatcher = getMatcher(matches);
 const isPrefixMatch = startsWithMatcher('fox'); // -> false
 
-const endsWithMatcher = getMatcher(exclusions, true);
+const endsWithMatcher = getMatcher(matches, true);
 const isSuffixMatch = endsWithMatcher('fox'); // -> true
 ```
 
@@ -40,7 +40,7 @@ const isSuffixMatch = endsWithMatcher('fox'); // -> true
 ```javascript
 import {getMatcher} from 'super-swew';
 
-const exclusions = [
+const matches = [
     'ab',
     'co',
     'ra',
@@ -54,7 +54,7 @@ const bands = [
     'deftones'
 ];
 
-const isStartsWithMatch = getMatcher(exclusions);
+const isStartsWithMatch = getMatcher(matches);
 const matchingBands = bands.filter(band => isStartsWithMatch(band));
 console.log(matchingBands);
 // -> [ 'abba', 'coldplay', 'radiohead' ]
@@ -62,9 +62,9 @@ console.log(matchingBands);
 
 ## Description
 
-This uses a tree data structure to perform string startswith or endsWith comparisons efficiently.
+This uses a tree data structure to perform string startsWith or endsWith comparisons efficiently.
 
-There is some overhead to creating the tree so it is not suitable when performing a small number of comparisons.  For matching a small number of strings stick with native methods.  But, if you're performing upward of around 5000 comparisons this beats the native methods.
+There is some overhead to creating the tree, so it is not suitable when performing a small number of comparisons.  For matching a small number of strings stick with native methods.  But, if you're performing upward of around 5000 comparisons this beats the native methods.
 
 For a performance comparison you can run the performance test script included in the github repository.
 
