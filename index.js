@@ -34,7 +34,7 @@ function getMatcher(
 
     return (word) => {
         if (word === null || word === undefined || !(typeof word === 'string' || word instanceof String)) {
-            return false;
+            //return false;
         }
 
         let i = word.length;
