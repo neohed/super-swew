@@ -1,19 +1,16 @@
-function getMatcher(
-		validMatches = [],
-		isEndsWith = false
-) {
-    const matchesTree = validMatches.filter(x => !!x).sort((a, b) => a.length - b.length).reduce((treeBuilder, sortedMatches) => {
+function generateMatchesTree(isEndsWith = false) {
+    return (treeBuilder, sortedMatches) => {
         const matchingChars = sortedMatches.split('');
 
         if (isEndsWith) {
             matchingChars.reverse();
         }
 
-        const exclusionCharsLength = matchingChars.length - 1;
+        const matchCharsLength = matchingChars.length - 1;
 
         matchingChars.reduce((treeRef, matchingChar, i) => {
             if (!treeRef.isMatch && !treeRef.nextChars.has(matchingChar)) {
-                const isMatch = i === exclusionCharsLength;
+                const isMatch = i === matchCharsLength;
 
                 treeRef.nextChars.set(matchingChar, {
                     isMatch,
@@ -27,11 +24,10 @@ function getMatcher(
         }, treeBuilder);
 
         return treeBuilder
-    }, {
-        isMatch: false,
-        nextChars: new Map()
-    });
+    }
+}
 
+function matchWord(matchesTree, isEndsWith = false) {
     return (word) => {
         if (word === null || word === undefined || !(typeof word === 'string' || word instanceof String)) {
             return false;
@@ -47,12 +43,30 @@ function getMatcher(
             && i--
             && pointer.nextChars
             && pointer.nextChars.has(wordLetter = word[Math.abs(n - i)])
-            )
-        {
+            ) {
             pointer = pointer.nextChars.get(wordLetter);
         }
 
         return pointer.isMatch;
+    }
+}
+
+function getMatcher(
+    validMatches = []
+) {
+    const normalisedMatches = validMatches.filter(x => !!x).sort((a, b) => a.length - b.length);
+    const startsWithMatchesTree = normalisedMatches.reduce(generateMatchesTree(), {
+        isMatch: false,
+        nextChars: new Map()
+    });
+    const endsWithMatchesTree = normalisedMatches.reduce(generateMatchesTree(true), {
+        isMatch: false,
+        nextChars: new Map()
+    });
+
+    return {
+        startsWith: matchWord(startsWithMatchesTree),
+        endsWith: matchWord(endsWithMatchesTree, true),
     }
 }
 

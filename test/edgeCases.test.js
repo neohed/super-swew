@@ -34,12 +34,12 @@ describe('getMatcher Edge Case Tests', function() {
     let prefixMatcher;
 
     before(function() {
-        prefixMatcher = getMatcher(dodgyPrefixes);
+        prefixMatcher = getMatcher(dodgyPrefixes).startsWith;
     });
 
     describe('Should handle illegal prefixes', function() {
         it('Should still correctly match', function() {
-            const prefixMatcher = getMatcher(dodgyPrefixes);
+            const prefixMatcher = getMatcher(dodgyPrefixes).startsWith;
             const filtered = words.filter(word => prefixMatcher(word));
 
             assert.equal(filtered.length, 1);
@@ -48,7 +48,7 @@ describe('getMatcher Edge Case Tests', function() {
 
     describe('Should handle illegal suffixes', function() {
         it('Should still correctly match', function() {
-            const suffixMatcher = getMatcher(dodgySuffixes);
+            const suffixMatcher = getMatcher(dodgySuffixes).endsWith;
             const filtered = words.filter(word => suffixMatcher(word));
 
             assert.equal(filtered.length, 1);

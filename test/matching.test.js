@@ -55,8 +55,10 @@ describe('getMatcher Matching Tests', function() {
     let suffixMatcher;
 
     before(function() {
-        prefixMatcher = getMatcher(matchPrefixes);
-        suffixMatcher = getMatcher(matchSuffixes, true);
+        const { startsWith, endsWith } = getMatcher(matchPrefixes);
+
+        prefixMatcher = startsWith;
+        suffixMatcher = endsWith
     });
 
     describe('Should match', function() {
