@@ -2,6 +2,8 @@
 
 Fast string startsWith and endsWith comparisons.
 
+//TODO Use useful, real-world, examples!
+
 ## Usage
 
 #### Installation
