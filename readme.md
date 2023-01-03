@@ -1,6 +1,6 @@
 # super-swew
 
-Fast string startsWith and endsWith comparisons.
+A faster way to perform string startsWith and endsWith comparisons against many strings.
 
 ## Usage
 
