@@ -1,5 +1,5 @@
 module.exports = {
-    exclusions: [
+    match_data: [
         'hv',
         'hg',
         'ecf',
