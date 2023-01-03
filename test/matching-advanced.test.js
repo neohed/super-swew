@@ -16,7 +16,7 @@ describe('Advanced Matching Tests', function() {
         matcher = getMatcher(matchDictionary);
     });
 
-    describe('Should match full word with both startsWith and endsWith', function() {
+    describe('Should match full word with both matchStart and matchEnd', function() {
         it('Should match full length word for startsWith', function() {
             const isMatch = matcher.matchStart('specifically')
 
@@ -30,7 +30,7 @@ describe('Advanced Matching Tests', function() {
         });
     });
 
-    describe('Should fail to match startsWith', function() {
+    describe('Should fail to match matchStart', function() {
         it('startsWith should fail to match on last character', function() {
             const isMatch = matcher.matchStart('xpecifically')
 
@@ -44,7 +44,7 @@ describe('Advanced Matching Tests', function() {
         });
     });
 
-    describe('Should fail to match endsWith', function() {
+    describe('Should fail to match matchEnd', function() {
         it('endsWith should fail to match on first character', function() {
             const isMatch = matcher.matchEnd('specificallyx')
 
