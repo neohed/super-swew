@@ -2,8 +2,8 @@ const {getMatcher} = require('../index');
 const {dictionary} = require('../data/dictionary');
 const {exclusions} = require('../data/exclusions');
 
-function testSwew(dict, excl) {
-    const matcher = getMatcher(excl);
+function testSwew(dict, matches) {
+    const matcher = getMatcher(matches);
     dict.forEach(word => matcher.matchStart(word))
 }
 
