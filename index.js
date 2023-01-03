@@ -1,29 +1,46 @@
-function generateMatchesTree(isEndsWith = false) {
-    return (treeBuilder, sortedMatches) => {
-        const matchingChars = sortedMatches.split('');
+function generateMatchesTree(treeBuilder, match) {
+    const {
+        startsWithMatchesTree,
+        endsWithMatchesTree
+    } = treeBuilder;
+    const matchCharsLength = match.length - 1;
 
-        if (isEndsWith) {
-            matchingChars.reverse()
+    let treeRefStart = startsWithMatchesTree;
+    let treeRefEnd = endsWithMatchesTree;
+    for (let i = 0; i <= matchCharsLength; i++) {
+        const matchingCharStart = match[i];
+        const matchingCharEnd = match[matchCharsLength - i];
+
+        if (!treeRefStart.isMatch && !treeRefStart.nextChars.has(matchingCharStart)) {
+            const atEndOfMatch = i === matchCharsLength;
+
+            treeRefStart.nextChars.set(matchingCharStart, {
+                isMatch: atEndOfMatch,
+                nextChars: atEndOfMatch ? null : new Map()
+            })
         }
 
-        const matchCharsLength = matchingChars.length - 1;
+        if (!treeRefEnd.isMatch && !treeRefEnd.nextChars.has(matchingCharEnd)) {
+            const atEndOfMatch = i === matchCharsLength;
 
-        matchingChars.reduce((treeRef, matchingChar, i) => {
-            if (!treeRef.isMatch && !treeRef.nextChars.has(matchingChar)) {
-                const atEndOfMatch = i === matchCharsLength;
+            treeRefEnd.nextChars.set(matchingCharEnd, {
+                isMatch: atEndOfMatch,
+                nextChars: atEndOfMatch ? null : new Map()
+            })
+        }
 
-                treeRef.nextChars.set(matchingChar, {
-                    isMatch: atEndOfMatch,
-                    nextChars: atEndOfMatch ? null : new Map()
-                })
-            }
+        treeRefStart = treeRefStart.isMatch
+            ? treeRefStart
+            : treeRefStart.nextChars.get(matchingCharStart)
 
-            return treeRef.isMatch
-                ? treeRef
-                : treeRef.nextChars.get(matchingChar)
-        }, treeBuilder);
+        treeRefEnd = treeRefEnd.isMatch
+            ? treeRefEnd
+            : treeRefEnd.nextChars.get(matchingCharEnd)
+    }
 
-        return treeBuilder
+    return {
+        startsWithMatchesTree,
+        endsWithMatchesTree
     }
 }
 
@@ -55,13 +72,14 @@ function getMatcher(
     validMatches = []
 ) {
     const normalisedMatches = validMatches.filter(x => !!x).sort((a, b) => a.length - b.length);
-    const startsWithMatchesTree = normalisedMatches.reduce(generateMatchesTree(), {
-        isMatch: false,
-        nextChars: new Map()
-    });
-    const endsWithMatchesTree = normalisedMatches.reduce(generateMatchesTree(true), {
-        isMatch: false,
-        nextChars: new Map()
+    const {startsWithMatchesTree, endsWithMatchesTree} = normalisedMatches.reduce(generateMatchesTree, {
+        startsWithMatchesTree: {
+            isMatch: false,
+            nextChars: new Map()
+        }, endsWithMatchesTree: {
+            isMatch: false,
+            nextChars: new Map()
+        }
     });
 
     return {
