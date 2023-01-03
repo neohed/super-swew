@@ -10,11 +10,11 @@ function generateMatchesTree(isEndsWith = false) {
 
         matchingChars.reduce((treeRef, matchingChar, i) => {
             if (!treeRef.isMatch && !treeRef.nextChars.has(matchingChar)) {
-                const isMatch = i === matchCharsLength;
+                const atEndOfMatch = i === matchCharsLength;
 
                 treeRef.nextChars.set(matchingChar, {
-                    isMatch,
-                    nextChars: isMatch ? null : new Map()
+                    isMatch: atEndOfMatch,
+                    nextChars: atEndOfMatch ? null : new Map()
                 })
             }
 
