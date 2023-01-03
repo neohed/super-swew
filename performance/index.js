@@ -4,7 +4,7 @@ const {exclusions} = require('../data/exclusions');
 
 function testSwew(dict, excl) {
     const matcher = getMatcher(excl);
-    dict.forEach(word => matcher(word))
+    dict.forEach(word => matcher.matchStart(word))
 }
 
 function testNative(dict, excl) {

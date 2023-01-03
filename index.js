@@ -65,8 +65,8 @@ function getMatcher(
     });
 
     return {
-        startsWith: matchWord(startsWithMatchesTree),
-        endsWith: matchWord(endsWithMatchesTree, true),
+        matchStart: matchWord(startsWithMatchesTree),
+        matchEnd: matchWord(endsWithMatchesTree, true),
     }
 }
 
