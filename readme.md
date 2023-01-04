@@ -1,5 +1,7 @@
 # super-swew
 
+[![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/super-swew)
+
 A faster way to perform string startsWith and endsWith comparisons against many strings.
 
 ## Usage
