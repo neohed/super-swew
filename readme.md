@@ -1,6 +1,6 @@
 # super-swew
 
-[![NPM version][npm-image]][npm-url]
+[![NPM version][npm-version-image]][npm-url]
 
 A faster way to perform string startsWith and endsWith comparisons against many strings.
 
@@ -70,3 +70,8 @@ Also, much of the overhead is in creating the matcher - ```const myMatcher = get
 
 * npm test
 * npm run perf
+
+
+[npm-url]: https://npmjs.org/package/super-swew
+[npm-version-image]: https://img.shields.io/npm/v/super-swew.svg?style=flat
+
