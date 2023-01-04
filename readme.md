@@ -1,6 +1,6 @@
 # super-swew
 
-[![npm version]](https://www.npmjs.com/package/super-swew)
+[![NPM version][npm-image]][npm-url]
 
 A faster way to perform string startsWith and endsWith comparisons against many strings.
 
