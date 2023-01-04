@@ -29,7 +29,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    
+
     - name: Security check
       uses: microsoft/DevSkim-Action@v1
     - uses: github/codeql-action/upload-sarif@v1
