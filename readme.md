@@ -58,7 +58,7 @@ console.log(matchingBands);
 
 ## Description
 
-This uses a tree data structure to perform string ```matchStart``` or ```matchEnd``` comparisons efficiently.
+This uses a Trie data structure to perform string ```matchStart``` or ```matchEnd``` comparisons efficiently.
 
 There is some overhead to creating the tree, so it is not suitable when performing a small number of comparisons.  For matching a small number of strings stick with native methods.  But, if you're performing upward of around 5000 comparisons this beats the native methods.
 
